@@ -1,0 +1,74 @@
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    background-color: white;
+  }
+  
+  .testimonial-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    max-width: 1200px;
+    background: linear-gradient(to right, #67C3F3, #5A98F2); /* Blue background for the box */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    position: relative; /* To position the title inside the box */
+  }
+  
+  .testimonial-title {
+    position: absolute;
+    top: 20px; /* Positioned at the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center the text horizontally */
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    z-index: 1; /* Ensure it sits above other content */
+  }
+  
+  .testimonial-left {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 50%;
+  }
+  
+  .testimonial-img {
+    margin-top: 50px;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+  }
+  
+  .customer-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+  
+  .testimonial-right {
+    margin-top: 50px;
+    max-width: 50%;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  .customer-review {
+    margin-top: 50px;
+    padding: 10px;
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 10px;
+    text-align: justify;
+  }
+  

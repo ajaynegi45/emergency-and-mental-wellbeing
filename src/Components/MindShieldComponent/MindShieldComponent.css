@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: 'Muli', sans-serif;
+  color: #fff;
+}
+
+.mindshield-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.mindshield-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.logo img {
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 24px;
+  color: #233348;
+}
+
+.mindshield-nav a {
+  color: #0c0c18;
+  margin: 0 15px;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.mindshield-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 50px;
+}
+
+.mindshield-content {
+  max-width: 500px;
+}
+
+.mindshield-content h1 {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  color: #000;
+}
+
+.mindshield-content p {
+  font-weight: 300;
+  font-size: 21px;
+  line-height: 32px;
+  color: #7d7987;
+  text-align: justify;
+  padding-right: 30px;
+}
+
+.register-button{
+  height: 45px;
+  width: 150px;
+  background: linear-gradient(to right, #67C3F3, #5A98F2);
+  border: none;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  transition: .6s;
+  position: relative;
+  z-index: 1;
+  border-radius: 25px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+}
+
+.register-button:hover {
+  /* Glowing effect on hover */
+  box-shadow: 0 0 15px 3px rgb(166, 166, 167); /* blue glow */
+  transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+.mindshield-image img {
+  border-radius: 10px;
+}
+
+.journalimg{
+  padding-left: 20px;
+}
