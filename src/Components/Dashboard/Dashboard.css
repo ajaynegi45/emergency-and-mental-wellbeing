@@ -53,18 +53,17 @@ body {
 }
 
 .mindshield-content {
-  max-width: 500px;
+  max-width: 1000px;
 }
 
 .mindshield-content h1 {
   font-weight: 700;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 56px;
   color: #000;
-  margin: 60px;
   margin-left: 10px;
-  margin-top: 90px;
-}
+  margin-top: 10px;
+} 
 
 .mindshield-content p {
   font-weight: 300;
@@ -76,10 +75,11 @@ body {
 }
 
 .sos-button{
- 
-  height: 345px;
+
+  margin-top: 100px;
+  height: 400px;
   width: 400px;
-  background: linear-gradient(to right, #f80303, #f50909);
+  background-color: rgba(223, 58, 90, 1);
   border: none;
   font-weight: 600;
   font-size: 50px;
@@ -96,7 +96,7 @@ body {
  .p{
   
   padding: 40px;
-  margin-left: 50px;
+  margin-left: 40px;
  
 }
 
@@ -107,6 +107,7 @@ body {
 }
 
 .mindshield-image img {
+  margin-top: 500px;
   border-radius: 10px;
 }
 
@@ -116,10 +117,18 @@ body {
 
 
 .icon{
-color: #1278af;
+  
+  color: #1278af;
   right: 20px;
   top: 100%;
   translate: 20px;
   font-size: 26px;
 
+}
+
+.posi{
+  max-width: 500px;
+  white-space: nowrap;
+  padding-left: 30px;
+  color:rgba(223, 58, 90, 1);
 }

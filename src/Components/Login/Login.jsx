@@ -44,7 +44,7 @@ const Login = () => {
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: '50px',
-    maxWidth: '600px',
+    maxWidth: '1000px',
     margin: '50px auto',
     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
     padding: '20px',
@@ -100,6 +100,15 @@ const Login = () => {
     color: 'rgba(6, 107, 249, 1)',
     textDecoration: 'none',
   };
+  const alreadyAccountStyle = {
+    whiteSpace: 'nowrap',
+    marginLeft:'320px',
+    paddingRight: '700px',
+    textAlign: 'center',
+    marginTop: '15px',
+    fontSize: '19px',
+    color: '#333',
+  };
 
   return (
     <div style={formContainerStyle}>
@@ -140,9 +149,9 @@ const Login = () => {
         </button>
       </form>
 
-      <a href="/create-account" style={linkStyle}>
-        Don't have an account? Create an Account
-      </a>
+      <div style={alreadyAccountStyle}>
+        Don't have an account? <a href="/create-account" style={{ color: 'rgba(6, 107, 249, 1)', textDecoration: 'none' }}>Create an Account</a>
+      </div>
     </div>
   );
 };

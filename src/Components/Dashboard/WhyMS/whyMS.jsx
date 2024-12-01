@@ -12,12 +12,12 @@ const WhyMS = () => {
         <p>We’re here to empower you with tools that prioritize your safety and mental wellbeing. Whether it's an emergency or a need for motivation, we’ve got you covered</p>
         <div className="service-cards">
           <div className="service-card">
-            <img src="sos.jpg" alt="SOS Alert" width="250" height="250" />
+            <img src="sos.jpg" alt="SOS Alert" width="270" height="250" />
             <h3>SOS Alert</h3>
             <p>An emergency feature to instantly notify your registered contacts via email or phone in critical situations.</p>
           </div>
           <div className="service-card">
-            <img src="journalnew.png" alt="Journalling" width="300" height="250" className='journalimg'/>
+            <img src="journalnew.png" alt="Journalling" width="270" height="250" className='journalimg'/>
             <h3>Journalling</h3>
             <p>A secure space to document your daily thoughts and feelings for self-reflection.</p>
           </div>

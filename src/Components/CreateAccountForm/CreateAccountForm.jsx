@@ -75,7 +75,7 @@ const CreateAccountForm = () => {
 
   const alreadyAccountStyle = {
     whiteSpace: 'nowrap',
-    marginLeft:'600px',
+    marginLeft:'500px',
     paddingRight: '500px',
     textAlign: 'center',
     marginTop: '15px',

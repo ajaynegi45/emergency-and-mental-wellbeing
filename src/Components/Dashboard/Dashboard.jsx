@@ -49,9 +49,9 @@ const Dashboard = () => {
       {/* Main Content */}
       <main className="mindshield-main">
         <div className="mindshield-content">
-          <h1>
+          <h1 >
             Hi {user.username.toUpperCase()}, <br />
-            Your TODAY'S POSIVIBE
+            Your TODAY'S POSIVIBE<br/><br/><h1 className='posi' style={{color:"rgba(223, 58, 90, 1)",paddingLeft:"100px"}}>“You deserve all the good things. Believe in yourself !”</h1>
           </h1>
           <br />
           <Link to="/sos-alert">
@@ -70,11 +70,11 @@ const Dashboard = () => {
       </main>
 
       {/* Footer Section */}
-      <footer className="mindshield-footer">
+      {/* <footer className="mindshield-footer">
         <button onClick={handleLogout} className="logout-button">
           Logout
         </button>
-      </footer>
+      </footer> */}
     </div>
   );
 };

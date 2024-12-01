@@ -6,10 +6,12 @@
   max-width: 1200px;
   margin-top: 50px;
   margin-left: 200px;
+  
 }
 
 .down-content {
   max-width: 500px;
+  margin-right: 30px;
 }
 
 .down-content h1 {
