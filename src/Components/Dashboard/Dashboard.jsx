@@ -1,48 +1,82 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { IoPersonCircleSharp } from "react-icons/io5";
-import './Dashboard.css'
-// import WhyMS from './whyMS/whyMS';
+import './Dashboard.css';
 
 const Dashboard = () => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userCookie = Cookies.get('user');
+    if (userCookie) {
+      setUser(JSON.parse(userCookie));
+    } else {
+      navigate('/login'); // Redirect to login if no user is logged in
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    Cookies.remove('user'); // Remove the user cookie
+    navigate('/login'); // Redirect to login page
+  };
+
+  if (!user) return <div>Loading...</div>;
+
   return (
     <div className="mindshield-container" id="home">
-      
+      {/* Header */}
       <header className="mindshield-header">
         <div className="logo">
-          <img src="https://dashboard.codeparrot.ai/api/assets/Z0ifgYNVQVcR8-Nd" alt="Logo" width="41" height="41" />
+          <img
+            src="https://dashboard.codeparrot.ai/api/assets/Z0ifgYNVQVcR8-Nd"
+            alt="Logo"
+            width="41"
+            height="41"
+          />
           <span className="logo-text">MIND SHIELD</span>
         </div>
         <nav className="mindshield-nav">
           <a href="#home">Home</a>
-          
           <a href="#emergencycontacts">Emergency Contacts</a>
-          <a href="#jounaling">Journaling <IoPersonCircleSharp className='icon'/></a>
-          
-         {/* Use Link to navigate to /login */}
-        </nav> 
+          <Link to="/journaling" className="journaling-link">
+            Journaling <IoPersonCircleSharp className="icon" />
+          </Link>
+        </nav>
       </header>
+
+      {/* Main Content */}
       <main className="mindshield-main">
         <div className="mindshield-content">
-          <h1>Hi JOHN DOE, <br />Your TODAY'S POSIVIBE</h1><br />
-          
-          <Link to="/sos-alert"><button className="sos-button">SOS ALERT</button></Link>
-          
-            <p className='p'
-          >Tap in case of Emergency</p>
-          
-           {/* Use Link to navigate to /create-account */}
-
-         
+          <h1>
+            Hi {user.username.toUpperCase()}, <br />
+            Your TODAY'S POSIVIBE
+          </h1>
+          <br />
+          <Link to="/sos-alert">
+            <button className="sos-button">SOS ALERT</button>
+          </Link>
+          <p className="p">Tap in case of Emergency</p>
         </div>
         <div className="mindshield-image">
-          <img src="src/assets/img1.jpg" alt="Illustration" width="693" height="598" />
+          <img
+            src="src/assets/img1.jpg"
+            alt="Illustration"
+            width="693"
+            height="598"
+          />
         </div>
       </main>
-      {/* <WhyMS /> */}
-    </div>
-   
-  )
-}
 
-export default Dashboard
+      {/* Footer Section */}
+      <footer className="mindshield-footer">
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
+      </footer>
+    </div>
+  );
+};
+
+export default Dashboard;

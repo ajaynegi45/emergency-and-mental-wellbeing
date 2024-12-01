@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import '../../App.css';
-import { Link } from 'react-router-dom'; 
-const LoginForm = () => {
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import Cookies from 'js-cookie';
+
+const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,41 +23,56 @@ const LoginForm = () => {
     setFocused((prevState) => ({ ...prevState, [field]: false }));
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // Simulate a successful login (replace with your backend logic later)
+    if (email === 'test@test.com' && password === 'password') {
+      // Save user data in cookies
+      const user = { id: 1, username: email.split('@')[0] }; // Use part of email as username
+      Cookies.set('user', JSON.stringify(user), { expires: 7, secure: true });
+
+      // Redirect to Dashboard
+      navigate('/dashboard');
+    } else {
+      alert('Invalid credentials');
+    }
+  };
+
   const formContainerStyle = {
-    backgroundColor:'white',
-    // display: 'flex',
+    backgroundColor: 'white',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: '100px',
-    maxWidth: '1300px',
-    margin: 'auto',
+    paddingTop: '50px',
+    maxWidth: '600px',
+    margin: '50px auto',
+    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    padding: '20px',
+    borderRadius: '8px',
   };
 
   const titleStyle = {
-    fontSize: '32px',
+    fontSize: '24px',
     fontWeight: 'bold',
     marginBottom: '20px',
-    paddingLeft: '500px',
-    whiteSpace: 'nowrap',
+    textAlign: 'center',
   };
 
   const inputGroupStyle = {
-    paddingRight: '100px',
-    paddingLeft:'150px',
     marginBottom: '15px',
     width: '100%',
   };
 
   const labelStyle = {
-    fontSize: '20px',
+    fontSize: '16px',
     marginBottom: '5px',
+    display: 'block',
   };
 
   const inputStyle = (isFocused) => ({
     width: '100%',
     padding: '10px',
-    fontSize: '15px',
-    marginTop: '5px',
+    fontSize: '14px',
     borderRadius: '5px',
     border: `1px solid ${isFocused ? 'rgba(69, 143, 246, 1)' : '#ccc'}`, // Change border color when focused
     fontFamily: '"Mulish", sans-serif',
@@ -63,80 +81,68 @@ const LoginForm = () => {
   });
 
   const buttonStyle = {
-    marginLeft:'160px',
-    paddingRight:'10px',
-    width: '80%',
+    width: '100%',
     padding: '10px',
-    fontSize: '20px',
+    fontSize: '16px',
     backgroundColor: 'rgba(69, 143, 246, 1)',
     color: 'white',
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
-    marginTop: '20px',
+    marginTop: '10px',
   };
 
-  const alreadyAccountStyle = {
-    whiteSpace: 'nowrap',
-    marginLeft:'500px',
-    paddingRight: '700px',
+  const linkStyle = {
+    display: 'block',
+    marginTop: '10px',
     textAlign: 'center',
-    marginTop: '15px',
-    fontSize: '19px',
-    color: '#333',
+    fontSize: '14px',
+    color: 'rgba(6, 107, 249, 1)',
+    textDecoration: 'none',
   };
 
   return (
     <div style={formContainerStyle}>
       <div style={titleStyle}>Login to your Account</div>
 
-      {/* Email */}
-      <div style={inputGroupStyle}>
-        <label style={labelStyle}>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onFocus={() => handleFocus('email')}
-          onBlur={() => handleBlur('email')}
-          style={inputStyle(focused.email)} // Pass the focus state
-        />
-      </div>
+      <form onSubmit={handleLogin}>
+        {/* Email Input */}
+        <div style={inputGroupStyle}>
+          <label style={labelStyle}>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onFocus={() => handleFocus('email')}
+            onBlur={() => handleBlur('email')}
+            style={inputStyle(focused.email)}
+            required
+          />
+        </div>
 
-      {/* Password */}
-      <div style={inputGroupStyle}>
-        <label style={labelStyle}>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onFocus={() => handleFocus('password')}
-          onBlur={() => handleBlur('password')}
-          style={inputStyle(focused.password)} // Pass the focus state
-        />
-      </div>
+        {/* Password Input */}
+        <div style={inputGroupStyle}>
+          <label style={labelStyle}>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onFocus={() => handleFocus('password')}
+            onBlur={() => handleBlur('password')}
+            style={inputStyle(focused.password)}
+            required
+          />
+        </div>
 
-      {/* Log In Button */}
-      <button style={buttonStyle}>Login</button>
+        {/* Login Button */}
+        <button type="submit" style={buttonStyle}>
+          Login
+        </button>
+      </form>
 
-      {/* Don't have an account? */}
-      <div style={alreadyAccountStyle}>
-        Don't have an account? <a href="/create-account" style={{ color: 'rgba(6, 107, 249, 1)', textDecoration: 'none' }}>Create an Account</a>
-      </div>
-    </div>
-  );
-};
-
-const Login = () => {
-  return (
-    <div style={{ display: 'flex', minHeight: '30vh' }}>
-      {/* Left Section: Form */}
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <LoginForm />
-      </div>
-
-      {/* Right Section: Image */}
-      <div style={{ flex: 1, backgroundImage: 'url(/path/to/your/image.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      <a href="/create-account" style={linkStyle}>
+        Don't have an account? Create an Account
+      </a>
     </div>
   );
 };
