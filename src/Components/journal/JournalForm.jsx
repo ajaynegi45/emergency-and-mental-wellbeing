@@ -40,7 +40,7 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div style={{backgroundColor:"white"}}>
         {/* Reusing NavBar-like styling */}
         <nav
           style={{
@@ -80,13 +80,13 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "35px", marginLeft:"500px" }}>
-              <a href="#home" style={{ textDecoration: "none", color: "#333", fontSize: "18px" }}>
+              <a href="#home" style={{ textDecoration: "none", color: "grey", fontSize: "18px" }}>
                 Home
               </a>
-              <a href="#emergency" style={{ textDecoration: "none", color: "#333", fontSize: "18px"}}>
+              <a href="#emergency" style={{ textDecoration: "none", color: "grey", fontSize: "18px"}}>
                 Emergency Contacts
               </a>
-              <a href="#profile" style={{ textDecoration: "none", color: "#333", fontSize: "18px"}}>
+              <a href="#profile" style={{ textDecoration: "none", color: "grey", fontSize: "18px"}}>
                 Profile
               </a>
             </div>
@@ -112,6 +112,8 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
             justifyContent: "center",
             position: "relative",
             marginBottom: "30px",
+            backgroundColor: "white",
+  
           }}
         >
           <h1 style={{ margin: 0 }}>JOURNALLING</h1>
@@ -119,7 +121,7 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
         
         {/* Journal Content */}
         <div>
-          <label style={{ textAlign: "center", border: "none" }}>
+          <label style={{ textAlign: "center", border: "none",backgroundColor: "white" }}>
             <strong style={{ fontSize: "24px" }}>Content</strong>
           </label>
           <textarea

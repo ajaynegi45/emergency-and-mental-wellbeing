@@ -11,6 +11,7 @@ const JournalList = ({ journals, onDeleteJournal, onEditJournal, onSortChange })
           justifyContent: 'space-between',
           alignItems: 'center',
           marginBottom: '20px',
+        
         }}
       >
         <h2 style={{ margin: 0, color: '#333' }}>All Journals</h2>

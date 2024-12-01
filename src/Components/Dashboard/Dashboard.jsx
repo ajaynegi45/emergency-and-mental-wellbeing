@@ -40,18 +40,17 @@ const Dashboard = () => {
         <nav className="mindshield-nav">
           <a href="#home">Home</a>
           <a href="#emergencycontacts">Emergency Contacts</a>
-          <Link to="/journaling" className="journaling-link">
-            Journaling <IoPersonCircleSharp className="icon" />
-          </Link>
+          <Link to="/journaling">Journalling</Link> {/* Add link to journaling page */}
+          <IoPersonCircleSharp className="icon" />
         </nav>
       </header>
 
       {/* Main Content */}
       <main className="mindshield-main">
         <div className="mindshield-content">
-          <h1 >
+          <h1>
             Hi {user.username.toUpperCase()}, <br />
-            Your TODAY'S POSIVIBE<br/><br/><h1 className='posi' style={{color:"rgba(223, 58, 90, 1)",paddingLeft:"100px"}}>“You deserve all the good things. Believe in yourself !”</h1>
+            YOUR TODAY'S POSIVIBE<br/><br/><h1 className='posi' style={{color:"rgba(223, 58, 90, 1)",paddingLeft:"100px"}}>“You deserve all the good things. Believe in yourself !”</h1>
           </h1>
           <br />
           <Link to="/sos-alert">
@@ -70,11 +69,6 @@ const Dashboard = () => {
       </main>
 
       {/* Footer Section */}
-      {/* <footer className="mindshield-footer">
-        <button onClick={handleLogout} className="logout-button">
-          Logout
-        </button>
-      </footer> */}
     </div>
   );
 };
