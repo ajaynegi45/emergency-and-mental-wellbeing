@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import Cookies from 'js-cookie';
 import { login } from '../../services/AuthService';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,11 +42,13 @@ const Login = () => {
       login(data).then((resp)=>{
         const user = {username: data.email.split('@')[0] }; // Use part of email as username
         Cookies.set('user', JSON.stringify(user), { expires: 7, secure: true });
+        toast.success("User Logged in successfully");
         navigate('/dashboard');
       })
       .catch((err) => {
         console.error("Error during login", err);
-        alert("Invalid credentials");
+        toast.error("Invalid credentials. Please try again");
+       
   
     });
       
@@ -52,7 +56,7 @@ const Login = () => {
       // Redirect to Dashboard
       
     } else {
-      alert('Invalid credentials');
+      toast.error("Invalid credentials. Please try again");
     }
   };
 

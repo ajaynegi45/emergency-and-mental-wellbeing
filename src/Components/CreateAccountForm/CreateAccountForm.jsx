@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../../App.css';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { register } from '../../services/AuthService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const CreateAccountForm = () => {
   const [data, setData] = useState({
     name: '',
@@ -65,10 +67,12 @@ const CreateAccountForm = () => {
         return;
     }
     register(data).then((resp)=>{
+      toast.success("User registered successfully");
       navigate("/login")
     })
     .catch((err) => {
       console.error("Error during registration", err);
+      toast.error("Error registering user");
     });
   }
   const formContainerStyle = {

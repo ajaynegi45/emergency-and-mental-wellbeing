@@ -17,6 +17,7 @@ import React, { useState, useEffect } from "react";
 import JournalForm from "./components/journal/JournalForm";
 import JournalList from "./components/journal/JournalList";
 import { getJournals, createJournal, deleteJournal, updateJournal } from "./services/journalService";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [journals, setJournals] = useState([]);
@@ -72,7 +73,11 @@ function App() {
   };
 
   return (
+    <div>
+      <ToastContainer />
+   
     <Router>
+      
       <div>
         <Routes>
           {/* Create Account Route */}
@@ -130,6 +135,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </div>
   );
 }
 
