@@ -10,6 +10,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const userCookie = Cookies.get('user');
+    console.log(userCookie);
     if (userCookie) {
       setUser(JSON.parse(userCookie));
     } else {
