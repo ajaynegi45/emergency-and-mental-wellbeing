@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     Cookies.remove('user'); // Remove the user cookie
-    navigate('/login'); // Redirect to login page
+    navigate('/'); // Redirect to the homepage (MindShieldComponent)
   };
 
   if (!user) return <div>Loading...</div>;
@@ -41,8 +41,9 @@ const Dashboard = () => {
         <nav className="mindshield-nav">
           <a href="#home">Home</a>
           <a href="#emergencycontacts">Emergency Contacts</a>
-          <Link to="/journaling">Journalling</Link> {/* Add link to journaling page */}
+          <Link to="/journaling">Journaling</Link>
           <IoPersonCircleSharp className="icon" />
+          <button className="logout-button" onClick={handleLogout}>Logout</button> {/* Logout button */}
         </nav>
       </header>
 
