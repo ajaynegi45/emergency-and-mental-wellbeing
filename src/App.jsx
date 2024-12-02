@@ -17,8 +17,14 @@ import { useState, useEffect } from "react";
 import JournalForm from "./components/journal/JournalForm";
 import JournalList from "./components/journal/JournalList";
 import { getJournals, createJournal, deleteJournal, updateJournal } from "./services/journalService";
+
+import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'sonner';
+import ProfilePage from './Components/ProfilePage/ProfilePage';
+
 import Contact from "./Components/SOSAlerts/Contact/contact.jsx";
 import SendAlerts from "./Components/SOSAlerts/SendAlerts/sendAlerts.jsx";
+
 
 function App() {
   const [journals, setJournals] = useState([]);
@@ -74,7 +80,11 @@ function App() {
   };
 
   return (
+    <div>
+    <Toaster/>
+   
     <Router>
+      
       <div>
         <Routes>
           {/* Create Account Route */}
@@ -98,6 +108,16 @@ function App() {
                 <Dashfooter />
               </>
             }
+          />
+
+          {/* Profile Route */}
+          <Route path="/profile" 
+          element={
+            <>
+            <NavBar />
+            <ProfilePage/>
+            </>
+          } 
           />
 
           {/* Journaling Route */}
@@ -136,6 +156,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </div>
   );
 }
 

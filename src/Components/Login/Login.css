@@ -1,0 +1,79 @@
+
+.form-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    max-width: 50%;
+    margin: 50px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: hidden;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: "Mulish", sans-serif;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .input:focus {
+    border-color: rgba(69, 143, 246, 1);
+    box-shadow: 0 0 5px rgba(69, 143, 246, 0.7);
+  }
+  
+  .button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgba(69, 143, 246, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(6, 107, 249, 1);
+    text-decoration: none;
+  }
+  
+  .already-account {
+    white-space: nowrap;
+    margin-left: 700px;
+    padding-right: 700px;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 19px;
+    color: #333;
+  }
+  

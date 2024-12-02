@@ -41,9 +41,8 @@ const Dashboard = () => {
         <nav className="mindshield-nav">
           <a href="#home">Home</a>
           <a href="#emergencycontacts">Emergency Contacts</a>
-          <Link to="/journaling">Journaling</Link>
-          <IoPersonCircleSharp className="icon" />
-          <button className="logout-button" onClick={handleLogout}>Logout</button> {/* Logout button */}
+          <Link to="/journaling">Journalling</Link> {/* Add link to journaling page */}
+          <Link to="/profile"><IoPersonCircleSharp className="icon" /></Link>
         </nav>
       </header>
 
