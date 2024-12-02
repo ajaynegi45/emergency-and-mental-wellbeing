@@ -18,6 +18,8 @@ import JournalForm from "./components/journal/JournalForm";
 import JournalList from "./components/journal/JournalList";
 import { getJournals, createJournal, deleteJournal, updateJournal } from "./services/journalService";
 import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'sonner';
+import ProfilePage from './Components/ProfilePage/ProfilePage';
 
 function App() {
   const [journals, setJournals] = useState([]);
@@ -74,7 +76,7 @@ function App() {
 
   return (
     <div>
-      <ToastContainer />
+    <Toaster/>
    
     <Router>
       
@@ -97,6 +99,16 @@ function App() {
                 <Dashfooter />
               </>
             }
+          />
+
+          {/* Profile Route */}
+          <Route path="/profile" 
+          element={
+            <>
+            <NavBar />
+            <ProfilePage/>
+            </>
+          } 
           />
 
           {/* Journaling Route */}

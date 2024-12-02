@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../../App.css';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { register } from '../../services/AuthService';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+import "../CreateAccountForm/CreateAccountForm.css";
+import { toast } from 'sonner';
 const CreateAccountForm = () => {
   const [data, setData] = useState({
     name: '',
@@ -64,6 +65,7 @@ const CreateAccountForm = () => {
     if (hasError) {
         setError({ errors: validationErrors, isError: true });
         console.log("Error: " + validationErrors);
+        toast.error("Invalid credentials. Please try again");
         return;
     }
     register(data).then((resp)=>{
@@ -75,126 +77,68 @@ const CreateAccountForm = () => {
       toast.error("Error registering user");
     });
   }
-  const formContainerStyle = {
-    backgroundColor:'white',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-  };
-
-  const titleStyle = {
-    fontSize: '32px',
-    fontWeight: 'bold',
-    marginBottom: '20px',
-  };
-
-  const inputGroupStyle = {
-    marginBottom: '15px',
-    width: '100%',
-    maxWidth: '950px',
-  };
-
-  const labelStyle = {
-    fontSize: '20px',
-    marginBottom: '5px',
-  };
-
-  const inputStyle = (isFocused) => ({
-    width: '100%',
-    padding: '10px',
-    fontSize: '15px',
-    marginTop: '5px',
-    borderRadius: '5px',
-    border: `1px solid ${isFocused ? 'rgba(69, 143, 246, 1)' : '#ccc'}`,
-    fontFamily: '"Mulish", sans-serif',
-    boxShadow: isFocused ? '0 0 5px rgba(69, 143, 246, 0.7)' : 'none',
-    transition: 'box-shadow 0.3s ease-in-out',
-  });
-
-  const buttonStyle = {
-    width: '70%',
-    padding: '10px',
-    fontSize: '20px',
-    backgroundColor: 'rgba(69, 143, 246, 1)',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    marginTop: '20px',
-  };
-
-  const alreadyAccountStyle = {
-    whiteSpace: 'nowrap',
-    marginLeft:'500px',
-    paddingRight: '500px',
-    textAlign: 'center',
-    marginTop: '15px',
-    fontSize: '19px',
-    color: '#333',
-  };
 
   return (
-    <div style={formContainerStyle}>
-      <div style={titleStyle}>Create an Account</div>
+    <div className='create-form-container'>
+      <div className='title'>Create an Account</div>
 
       {/* Full Name */}
-      <div style={inputGroupStyle}>
-        <label style={labelStyle}>Full Name</label>
+      <div className='create-input-group'>
+        <label className='label'>Full Name</label>
         <input
           type="text"
           value={data.name}
           onChange={(e) => handleInputChange('name', e.target.value)}
           onFocus={() => handleFocus('name')}
           onBlur={() => handleBlur('name')}
-          style={inputStyle(focused.name)} // Pass the focus state
+          className='input' 
         />
       </div>
 
       {/* Email */}
-      <div style={inputGroupStyle}>
-        <label style={labelStyle}>Email</label>
+      <div className='create-input-group'>
+        <label className='label'>Email</label>
         <input
           type="email"
           value={data.email}
           onChange={(e) => handleInputChange('email', e.target.value)}
           onFocus={() => handleFocus('email')}
           onBlur={() => handleBlur('email')}
-          style={inputStyle(focused.email)} // Pass the focus state
+          className='input'
         />
       </div>
 
       {/* Password */}
-      <div style={inputGroupStyle}>
-        <label style={labelStyle}>Password</label>
+      <div className='create-input-group'>
+        <label className='label'>Password</label>
         <input
           type="password"
           value={data.password}
           onChange={(e) => handleInputChange('password', e.target.value)}
           onFocus={() => handleFocus('password')}
           onBlur={() => handleBlur('password')}
-          style={inputStyle(focused.password)} // Pass the focus state
+          className='input'
         />
       </div>
 
       {/* Confirm Password */}
-      <div style={inputGroupStyle}>
-        <label style={labelStyle}>Confirm Password</label>
+      <div className='create-input-group'>
+        <label className='label'>Confirm Password</label>
         <input
           type="password"
           value={data.confirmPassword}
           onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
           onFocus={() => handleFocus('confirmPassword')}
           onBlur={() => handleBlur('confirmPassword')}
-          style={inputStyle(focused.confirmPassword)} // Pass the focus state
+          className='input'
         />
       </div>
 
       {/* Create Account Button */}
-      <button style={buttonStyle} type='submit' onClick={submitForm}>Create Account</button>
+      <button className='create-button' type='submit' onClick={submitForm}>Create Account</button>
 
       {/* Already have an account? */}
-      <div style={alreadyAccountStyle}>
+      <div className='already-account'>
         Already have an account?{' '}
         <Link to="/login" style={{ color: 'rgba(6, 107, 249, 1)', textDecoration: 'none' }}>
           Log In

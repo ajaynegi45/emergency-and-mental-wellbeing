@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
+  const navigate=useNavigate();
   // Inline styles for the navbar
+  const Profile=()=>{
+    navigate('/profile');
+  }
   const navbarStyle = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -45,7 +50,7 @@ const NavBar = () => {
         <span style={siteNameStyle}>MIND SHIELD</span>
       </div>
       <div>
-        <img src="reg_pic.png" style={rightImageStyle} />
+        <img src="reg_pic.png" style={rightImageStyle} onClick={Profile}/>
       </div>
     </nav>
   );

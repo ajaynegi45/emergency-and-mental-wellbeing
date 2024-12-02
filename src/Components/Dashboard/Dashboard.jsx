@@ -42,7 +42,7 @@ const Dashboard = () => {
           <a href="#home">Home</a>
           <a href="#emergencycontacts">Emergency Contacts</a>
           <Link to="/journaling">Journalling</Link> {/* Add link to journaling page */}
-          <IoPersonCircleSharp className="icon" />
+          <Link to="/profile"><IoPersonCircleSharp className="icon" /></Link>
         </nav>
       </header>
 

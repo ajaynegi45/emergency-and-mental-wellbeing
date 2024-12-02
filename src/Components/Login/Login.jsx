@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import Cookies from 'js-cookie';
 import { login } from '../../services/AuthService';
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from 'sonner';
+import "../Login/Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const Login = () => {
     if (data.email !=='' && data.password !=='') {
       // Save user data in cookies
       login(data).then((resp)=>{
-        const user = {username: data.email.split('@')[0] }; // Use part of email as username
+        const user = {userId:resp.userId, username: resp.email.split('@')[0], email:resp.email }; // Use part of email as username
         Cookies.set('user', JSON.stringify(user), { expires: 7, secure: true });
         toast.success("User Logged in successfully");
         navigate('/dashboard');
@@ -132,46 +132,46 @@ const Login = () => {
   };
 
   return (
-    <div style={formContainerStyle}>
-      <div style={titleStyle}>Login to your Account</div>
+    <div className='form-container'>
+      <div className='title'>Login to your Account</div>
 
       <form onSubmit={handleLogin}>
         {/* Email Input */}
-        <div style={inputGroupStyle}>
-          <label style={labelStyle}>Email</label>
+        <div className='input-group'>
+          <label className='label'>Email</label>
           <input
             type="email"
             value={data.email}
             onChange={(e) => handleInputChange("email",e.target.value)}
             onFocus={() => handleFocus('email')}
             onBlur={() => handleBlur('email')}
-            style={inputStyle(focused.email)}
+            className='input'
             required
           />
         </div>
 
         {/* Password Input */}
-        <div style={inputGroupStyle}>
-          <label style={labelStyle}>Password</label>
+        <div className='input-group'>
+          <label className='label'>Password</label>
           <input
             type="password"
             value={data.password}
             onChange={(e) => handleInputChange("password",e.target.value)}
             onFocus={() => handleFocus('password')}
             onBlur={() => handleBlur('password')}
-            style={inputStyle(focused.password)}
+            className='input'
             required
           />
         </div>
 
         {/* Login Button */}
-        <button type="submit" style={buttonStyle} onClick={handleLogin}>
+        <button type="submit" className='button' onClick={handleLogin}>
           Login
         </button>
       </form>
 
-      <div style={alreadyAccountStyle}>
-        Don't have an account? <a href="/create-account" style={{ color: 'rgba(6, 107, 249, 1)', textDecoration: 'none' }}>Create an Account</a>
+      <div className='already-account'>
+        Don't have an account? <a href="/create-account" className='link'>Create an Account</a>
       </div>
     </div>
   );
