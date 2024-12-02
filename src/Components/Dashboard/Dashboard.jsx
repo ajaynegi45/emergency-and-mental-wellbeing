@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     Cookies.remove('user'); // Remove the user cookie
-    navigate('/login'); // Redirect to login page
+    navigate('/'); // Redirect to the homepage (MindShieldComponent)
   };
 
   if (!user) return <div>Loading...</div>;
