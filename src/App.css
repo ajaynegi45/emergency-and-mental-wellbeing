@@ -42,4 +42,8 @@
     border-color: rgba(6, 107, 249, 1);  /* Change the border color to blue */
     outline: none;        /* Remove the default outline when input is focused */
   }
+
+  a{
+    text-decoration: none;
+  }
   

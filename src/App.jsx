@@ -13,7 +13,7 @@ import WhyMS from './Components/Dashboard/whyMS/whyMS';
 import DownDash from './Components/Dashboard/DownDash/DownDash';
 import Dashfooter from './Components/Dashboard/Dashfooter/Dashfooter';
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import JournalForm from "./components/journal/JournalForm";
 import JournalList from "./components/journal/JournalList";
 import { getJournals, createJournal, deleteJournal, updateJournal } from "./services/journalService";
@@ -21,6 +21,7 @@ import { getJournals, createJournal, deleteJournal, updateJournal } from "./serv
 import { ToastContainer } from 'react-toastify';
 
 import Contact from "./Components/SOSAlerts/Contact/contact.jsx";
+import SendAlerts from "./Components/SOSAlerts/SendAlerts/sendAlerts.jsx";
 
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
 
 
           <Route path="/contact" element={<><NavBar /><Contact /></>} />
+          <Route path="/sos-alert" element={<><NavBar /><SendAlerts /></>} />
 
           {/* Dashboard Route */}
           <Route

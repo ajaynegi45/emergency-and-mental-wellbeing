@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import Cookies from 'js-cookie';
 import { login } from '../../services/AuthService';

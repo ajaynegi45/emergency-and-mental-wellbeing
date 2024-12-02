@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const NavBar = () => {
   // Inline styles for the navbar
@@ -40,10 +41,14 @@ const NavBar = () => {
 
   return (
     <nav style={navbarStyle}>
-      <div style={logoStyle}>
-        <img src="m.png" alt="Logo" style={logoImgStyle} />
-        <span style={siteNameStyle}>MIND SHIELD</span>
-      </div>
+      <Link to="/dashboard">
+        <div style={logoStyle}>
+
+          <img src="m.png" alt="Logo" style={logoImgStyle} />
+          <span style={siteNameStyle}>MIND SHIELD</span>
+
+        </div>
+      </Link>
       <div>
         <img src="reg_pic.png" style={rightImageStyle} />
       </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
-import './contact.css'; // Assuming you still want to keep the same CSS
+import './contact.css';
 
 const Contact = () => {
     // Hardcoded user ID
@@ -28,17 +28,16 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate form input
+        // Validate form input: At least one contact detail (email or phone) is required
         if (!email && !phoneNumber) {
             toast.error('At least one contact detail (email or phone) is required.');
             return;
         }
 
-        const contactData = {
-            userId,  // Hardcoded userId
-            email,
-            phoneNumber,
-        };
+        // Prepare the payload for the API call, excluding empty fields
+        const contactData = { userId };
+        if (email) contactData.email = email;
+        if (phoneNumber) contactData.phoneNumber = phoneNumber;
 
         try {
             // Show loading toast while saving
@@ -46,8 +45,13 @@ const Contact = () => {
                 axios.post('http://localhost:8080/api/sos/add-contacts', contactData),
                 {
                     loading: 'Saving contact...',
-                    success: 'Contact saved successfully!',
-                    error: 'An error occurred. Please try again.',
+                    success: (response) => response.data,  // Use the response message from backend
+                    error: (error) => {
+                        // Error handling based on the custom backend error structure
+                        const errorDetails = error.response?.data;  // The response body is ErrorDetails
+                        const errorMessage = errorDetails?.message || 'An error occurred. Please try again.';
+                        return errorMessage;  // Return the error message to show in the toast
+                    },
                 }
             );
 
@@ -59,8 +63,8 @@ const Contact = () => {
             setEmail('');
             setPhoneNumber('');
         } catch (error) {
-            const errorMessage = error.response?.data || 'An error occurred. Please try again.';
-            toast.error(errorMessage);
+            const errorMessage = error.response?.data?.message || 'An error occurred. Please try again.';
+            toast.error(errorMessage);  // Show error toast
         }
     };
 
