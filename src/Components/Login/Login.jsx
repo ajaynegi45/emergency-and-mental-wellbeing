@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import Cookies from 'js-cookie';
+import { login } from '../../services/AuthService';
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [data,setData]=useState({
+    email: '',
+    password: '',
+  })
+  const handleInputChange = (field, value) => {
+    setData((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
   // Track focus for inputs
   const [focused, setFocused] = useState({
     email: false,
@@ -27,13 +35,22 @@ const Login = () => {
     e.preventDefault();
 
     // Simulate a successful login (replace with your backend logic later)
-    if (email === 'test@test.com' && password === 'password') {
+    if (data.email !=='' && data.password !=='') {
       // Save user data in cookies
-      const user = { id: 1, username: email.split('@')[0] }; // Use part of email as username
-      Cookies.set('user', JSON.stringify(user), { expires: 7, secure: true });
+      login(data).then((resp)=>{
+        const user = {username: data.email.split('@')[0] }; // Use part of email as username
+        Cookies.set('user', JSON.stringify(user), { expires: 7, secure: true });
+        navigate('/dashboard');
+      })
+      .catch((err) => {
+        console.error("Error during login", err);
+        alert("Invalid credentials");
+  
+    });
+      
 
       // Redirect to Dashboard
-      navigate('/dashboard');
+      
     } else {
       alert('Invalid credentials');
     }
@@ -120,8 +137,8 @@ const Login = () => {
           <label style={labelStyle}>Email</label>
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={data.email}
+            onChange={(e) => handleInputChange("email",e.target.value)}
             onFocus={() => handleFocus('email')}
             onBlur={() => handleBlur('email')}
             style={inputStyle(focused.email)}
@@ -134,8 +151,8 @@ const Login = () => {
           <label style={labelStyle}>Password</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={data.password}
+            onChange={(e) => handleInputChange("password",e.target.value)}
             onFocus={() => handleFocus('password')}
             onBlur={() => handleBlur('password')}
             style={inputStyle(focused.password)}
@@ -144,7 +161,7 @@ const Login = () => {
         </div>
 
         {/* Login Button */}
-        <button type="submit" style={buttonStyle}>
+        <button type="submit" style={buttonStyle} onClick={handleLogin}>
           Login
         </button>
       </form>

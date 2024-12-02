@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import '../../App.css';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
+import { register } from '../../services/AuthService';
 const CreateAccountForm = () => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const navigate=useNavigate();
+  const [error, setError] = useState({
+    errors: {},
+    isError: false
+  });
+  const handleInputChange = (field, value) => {
+    setData((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
   // Track focus for inputs
   const [focused, setFocused] = useState({
-    fullName: false,
+    name: false,
     email: false,
     password: false,
     confirmPassword: false,
@@ -23,7 +36,41 @@ const CreateAccountForm = () => {
   const handleBlur = (field) => {
     setFocused((prevState) => ({ ...prevState, [field]: false }));
   };
+  const submitForm = (event) => {
+    event.preventDefault();
 
+    let validationErrors = {};
+    let hasError = false;
+
+    if (!data.name) {
+        validationErrors.name = "Name is required";
+        hasError = true;
+    }
+    if (!data.email) {
+        validationErrors.email = "Email is required";
+        hasError = true;
+    }
+    if (!data.password) {
+        validationErrors.password = "Password is required";
+        hasError = true;
+    }
+    if (data.password!=data.confirmPassword) {
+        validationErrors.confirmPassword = "Please make sure your passwords match";
+        hasError = true;
+    }
+
+    if (hasError) {
+        setError({ errors: validationErrors, isError: true });
+        console.log("Error: " + validationErrors);
+        return;
+    }
+    register(data).then((resp)=>{
+      navigate("/login")
+    })
+    .catch((err) => {
+      console.error("Error during registration", err);
+    });
+  }
   const formContainerStyle = {
     backgroundColor:'white',
     display: 'flex',
@@ -92,11 +139,11 @@ const CreateAccountForm = () => {
         <label style={labelStyle}>Full Name</label>
         <input
           type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          onFocus={() => handleFocus('fullName')}
-          onBlur={() => handleBlur('fullName')}
-          style={inputStyle(focused.fullName)} // Pass the focus state
+          value={data.name}
+          onChange={(e) => handleInputChange('name', e.target.value)}
+          onFocus={() => handleFocus('name')}
+          onBlur={() => handleBlur('name')}
+          style={inputStyle(focused.name)} // Pass the focus state
         />
       </div>
 
@@ -105,8 +152,8 @@ const CreateAccountForm = () => {
         <label style={labelStyle}>Email</label>
         <input
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={data.email}
+          onChange={(e) => handleInputChange('email', e.target.value)}
           onFocus={() => handleFocus('email')}
           onBlur={() => handleBlur('email')}
           style={inputStyle(focused.email)} // Pass the focus state
@@ -118,8 +165,8 @@ const CreateAccountForm = () => {
         <label style={labelStyle}>Password</label>
         <input
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={data.password}
+          onChange={(e) => handleInputChange('password', e.target.value)}
           onFocus={() => handleFocus('password')}
           onBlur={() => handleBlur('password')}
           style={inputStyle(focused.password)} // Pass the focus state
@@ -131,8 +178,8 @@ const CreateAccountForm = () => {
         <label style={labelStyle}>Confirm Password</label>
         <input
           type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={data.confirmPassword}
+          onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
           onFocus={() => handleFocus('confirmPassword')}
           onBlur={() => handleBlur('confirmPassword')}
           style={inputStyle(focused.confirmPassword)} // Pass the focus state
@@ -140,7 +187,7 @@ const CreateAccountForm = () => {
       </div>
 
       {/* Create Account Button */}
-      <button style={buttonStyle}>Create Account</button>
+      <button style={buttonStyle} type='submit' onClick={submitForm}>Create Account</button>
 
       {/* Already have an account? */}
       <div style={alreadyAccountStyle}>
