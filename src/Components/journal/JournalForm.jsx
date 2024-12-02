@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
   const [content, setContent] = useState(editJournal ? editJournal.content : "");
@@ -40,7 +41,7 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div style={{backgroundColor:"white"}}>
+      <div style={{ backgroundColor: "white" }}>
         {/* Reusing NavBar-like styling */}
         <nav
           style={{
@@ -79,17 +80,17 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
               MIND SHIELD
             </span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "35px", marginLeft:"500px" }}>
-              <a href="#home" style={{ textDecoration: "none", color: "grey", fontSize: "18px" }}>
-                Home
-              </a>
-              <a href="#emergency" style={{ textDecoration: "none", color: "grey", fontSize: "18px"}}>
-                Emergency Contacts
-              </a>
-              <a href="#profile" style={{ textDecoration: "none", color: "grey", fontSize: "18px"}}>
-                Profile
-              </a>
-            </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "35px", marginLeft: "500px" }}>
+            <Link to="/dashboard" style={{ textDecoration: "none", color: "grey", fontSize: "18px" }}>
+              Home
+            </Link>
+            <a href="#emergency" style={{ textDecoration: "none", color: "grey", fontSize: "18px" }}>
+              Emergency Contacts
+            </a>
+            <a href="#profile" style={{ textDecoration: "none", color: "grey", fontSize: "18px" }}>
+              Profile
+            </a>
+          </div>
           {/* Right Side: reg_img and Navigation Links */}
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             <img
@@ -113,15 +114,14 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
             position: "relative",
             marginBottom: "30px",
             backgroundColor: "white",
-  
           }}
         >
           <h1 style={{ margin: 0 }}>JOURNALLING</h1>
         </div>
-        
+
         {/* Journal Content */}
         <div>
-          <label style={{ textAlign: "center", border: "none",backgroundColor: "white" }}>
+          <label style={{ textAlign: "center", border: "none", backgroundColor: "white" }}>
             <strong style={{ fontSize: "24px" }}>Content</strong>
           </label>
           <textarea
@@ -132,6 +132,7 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
             rows="9"
             style={{
               width: "100%",
+              paddingRight: "0px",
               marginTop: "20px",
               marginBottom: "10px",
               border: "1px solid black", // Keep the border style consistent
@@ -139,7 +140,7 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
               outline: "none", // Prevent default outline on focus
             }}
           />
-          
+
           {/* Display error message below the textarea */}
           {error && (
             <div style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>

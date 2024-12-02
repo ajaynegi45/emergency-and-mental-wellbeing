@@ -17,7 +17,11 @@ import React, { useState, useEffect } from "react";
 import JournalForm from "./components/journal/JournalForm";
 import JournalList from "./components/journal/JournalList";
 import { getJournals, createJournal, deleteJournal, updateJournal } from "./services/journalService";
+
 import { ToastContainer } from 'react-toastify';
+
+import Contact from "./Components/SOSAlerts/Contact/contact.jsx";
+
 
 function App() {
   const [journals, setJournals] = useState([]);
@@ -85,6 +89,9 @@ function App() {
 
           {/* Login Route */}
           <Route path="/login" element={<><NavBar /><Login /></>} />
+
+
+          <Route path="/contact" element={<><NavBar /><Contact /></>} />
 
           {/* Dashboard Route */}
           <Route
